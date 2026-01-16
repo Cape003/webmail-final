@@ -56,7 +56,7 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///webmail.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
-socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading')
+socketio = SocketIO(app, cors_allowed_origins="*", async_mode='threading', allow_unsafe_werkzeug=True)
 
 
 # --- Modèles (Inspirés de la structure SQL) ---
