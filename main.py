@@ -2,6 +2,9 @@ import os, random, datetime
 import subprocess
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
+from flask_socketio import SocketIO
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template_string, request, redirect, url_for, session, flash, jsonify
 
 # --- Porté de msgError.py ---
 def printE(msg, msgtype):
@@ -12,41 +15,6 @@ def printE(msg, msgtype):
         print(f"{time}\033[33m INFO {msg}\033[0m")
     else:
         print(f"{time}\033[31m ERROR {msg}\033[0m")
-
-        
-# -- Importation des librairies non natives --
-try: 
-    from flask_socketio import SocketIO
-    printE("Flask_socketio importation success",1)
-
-except ImportError :
-    try : 
-        subprocess.run("pip install flask_socketio", check=True, shell=True)
-        printE("Flask_socketio importation is a success",1)
-    except subprocess.CalledProcessError as e:
-        printE(f"Instalation of Flask_socketiofailed, instal Flask manualy",3)
-
-try: 
-    from flask_sqlalchemy import SQLAlchemy
-    printE("flask_sqlalchemy importation success",1)
-
-except ImportError :
-    try : 
-        subprocess.run("pip install flask_sqlalchemy", check=True, shell=True)
-        printE("Flask_sqlalchemy importation is a success",1)
-    except subprocess.CalledProcessError as e:
-        printE(f"Instalation of Flask_sqlalchemy failed, instal Flask manualy",3)
-
-try: 
-    from flask import Flask, render_template_string, request, redirect, url_for, session, flash, jsonify
-    printE("Flask importation success",1)
-
-except ImportError :
-    try : 
-        subprocess.run("pip install flask", check=True, shell=True)
-        printE("Flask importation is a success",1)
-    except subprocess.CalledProcessError as e:
-        printE(f"Instalation of Flask failed, instal Flask manualy",3)
 
 
 # --- Configuration App ---
